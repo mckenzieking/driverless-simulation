@@ -1,3 +1,5 @@
 Installing Github to desktop
 Open terminal and run the following command line.
 sudo wget https://github.com/shiftkey/desktop/releases/download/release-2.6.3-linux1/GitHubDesktop-linux-2.6.3-linux1.deb
+When install is complete, the download should be in the path you installed it to , either downloads or desktop is fine.
+Double click the icon(pink if downloaded on desktop and hit install.
