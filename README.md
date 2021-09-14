@@ -11,4 +11,4 @@ Note: The version used in this project is ROS Noetic, which is compatible with U
 3. Type `chmod +x ros_install.sh` into the terminal and hit enter
 4. Type `sudo ./ros_install.sh`. It will prompt you to enter your password.
 
-This will begin the installation of ROS
+This will begin the installation of ROS. This may take up to 45 minutes depending on your internet connection.
