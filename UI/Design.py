@@ -12,11 +12,11 @@ MENU_XML = """
 <interface>
   <menu id="app-menu">
     <section>
-      <attribute name="label" translatable="yes">Change label</attribute>
+      <attribute name="label" translatable="yes">Overview</attribute>
       <item>
         <attribute name="action">win.change_label</attribute>
-        <attribute name="target">String 1</attribute>
-        <attribute name="label" translatable="yes">String 1</attribute>
+        <attribute name="target">Instructions</attribute>
+        <attribute name="label" translatable="yes">Instructions</attribute>
       </item>
       <item>
         <attribute name="action">win.change_label</attribute>
@@ -33,12 +33,6 @@ MENU_XML = """
       <item>
         <attribute name="action">win.maximize</attribute>
         <attribute name="label" translatable="yes">Maximize</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">_About</attribute>
       </item>
       <item>
         <attribute name="action">app.quit</attribute>
@@ -70,7 +64,7 @@ class AppWindow(Gtk.ApplicationWindow):
             ),
         )
 
-        lbl_variant = GLib.Variant.new_string("String 1")
+        lbl_variant = GLib.Variant.new_string("Instructions")
         lbl_action = Gio.SimpleAction.new_stateful(
             "change_label", lbl_variant.get_type(), lbl_variant
         )
