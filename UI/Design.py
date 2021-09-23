@@ -6,7 +6,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gio, Gtk
 
 
-# This would typically be its own file
+
 MENU_XML = """
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
@@ -50,10 +50,7 @@ MENU_XML = """
 </interface>
 """
 
-def draw_pixbuf(widget, event):
-        path = '/home/markuz/wallpapers/WMwall1024x768.gif'
-        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-        widget.window.draw_pixbuf(widget.style.bg_gc[gtk.STATE_NORMAL], pixbuf, 0, 0, 0,0)
+
 class AppWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -130,11 +127,9 @@ class Application(Gtk.Application):
         self.set_app_menu(builder.get_object("app-menu"))
 
     def do_activate(self):
-        # We only allow a single window and raise any existing ones
         if not self.window:
-            # Windows are associated with the application
-            # when the last one is closed the application shuts down
-            self.window = AppWindow(application=self, title="Main Window")
+            
+            self.window = AppWindow(application=self, title="AI CAR SIMULATION")
 
         self.window.present()
 
