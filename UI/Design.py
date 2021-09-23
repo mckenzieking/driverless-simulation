@@ -20,13 +20,8 @@ MENU_XML = """
       </item>
       <item>
         <attribute name="action">win.change_label</attribute>
-        <attribute name="target">String 2</attribute>
-        <attribute name="label" translatable="yes">String 2</attribute>
-      </item>
-      <item>
-        <attribute name="action">win.change_label</attribute>
-        <attribute name="target">String 3</attribute>
-        <attribute name="label" translatable="yes">String 3</attribute>
+        <attribute name="target">Begin</attribute>
+        <attribute name="label" translatable="yes">Begin</attribute>
       </item>
     </section>
     <section>
@@ -108,10 +103,6 @@ class Application(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-
-        action = Gio.SimpleAction.new("about", None)
-        action.connect("activate", self.on_about)
-        self.add_action(action)
 
         action = Gio.SimpleAction.new("quit", None)
         action.connect("activate", self.on_quit)
