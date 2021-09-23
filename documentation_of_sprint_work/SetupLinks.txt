@@ -1,0 +1,5 @@
+Gazebo Simulator: http://gazebosim.org/download
+ROS Framework: http://wiki.ros.org/noetic/Installation
+Visual Studio: https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&rel=16
+Ubuntu ISO: https://ubuntu.com/download/desktop
+Virtual Box: https://www.virtualbox.org/
