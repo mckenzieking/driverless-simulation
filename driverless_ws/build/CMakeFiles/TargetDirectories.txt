@@ -47,3 +47,11 @@
 /home/vivek/driverless_ws/build/driverless_package/CMakeFiles/list_install_components.dir
 /home/vivek/driverless_ws/build/driverless_package/CMakeFiles/rebuild_cache.dir
 /home/vivek/driverless_ws/build/driverless_package/CMakeFiles/std_msgs_generate_messages_cpp.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/install/strip.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/install/local.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/install.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/list_install_components.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/rebuild_cache.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/edit_cache.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/test.dir
+/home/vivek/driverless_ws/build/pysdf/CMakeFiles/_catkin_empty_exported_target.dir

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="model" />
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find driverless_package)/urdf/test.urdf'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find driverless_package)/urdf/prius.urdf'" />
     <!-- send fake joint values -->
     <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
         <param name="use_gui" value="True"/>
