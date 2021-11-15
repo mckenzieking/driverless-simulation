@@ -7,3 +7,4 @@
 subdirs("gtest")
 subdirs("driverless_package")
 subdirs("pysdf")
+subdirs("driverless_control")

@@ -215,56 +215,84 @@
     </visual>
   </link>
 
-  <joint name="steering_joint" type="continuous">
+  <joint name="steering_joint" type="revolute">
     <origin xyz="0.357734 -0.627868 0.988243" rpy="-1.302101 0 0"/>
     <parent link="chassis"/>
     <child link="steering_wheel"/>
     <axis xyz="0 0 1"/>
-    <limit lower="-7.85" upper="7.85" effort="10000000" velocity="1000000"/>
+    <limit lower="-7.85" upper="7.85" effort="0" velocity="0"/>
   </joint>
 
-  <joint name="front_left_steer_joint" type="continuous">
+  <joint name="front_left_steer_joint" type="revolute">
     <parent link="chassis"/>
     <child link="fl_axle"/>
     <origin xyz="0.767 -1.41 0.3" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit lower="-0.8727" upper="0.8727" effort="10000000" velocity="1000000"/>
+    <limit lower="-0.52359878" upper="0.52359878" effort="0" velocity="0"/>
   </joint>
-  <joint name="front_right_steer_joint" type="continuous">
+
+  <transmission name="left_steer_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_steer_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_steer">
+      <mechanicalReduction>50</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <joint name="front_right_steer_joint" type="revolute">
     <parent link="chassis"/>
     <child link="fr_axle"/>
     <origin xyz="-0.767 -1.41 0.3" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit lower="-0.8727" upper="0.8727" effort="10000000" velocity="1000000"/>
+    <limit lower="-0.52359878" upper="0.52359878" effort="0" velocity="0"/>
   </joint>
+
+  <transmission name="right_steer_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_steer_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_steer">
+      <mechanicalReduction>50</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
   <joint name="front_left_wheel_joint" type="continuous">
     <parent link="fl_axle"/>
     <child link="front_left_wheel"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
+    <limit effort="0" velocity="22.0"/>
   </joint>
   <joint name="front_right_wheel_joint" type="continuous">
     <parent link="fr_axle"/>
     <child link="front_right_wheel"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
+    <limit effort="0" velocity="22.0"/>
   </joint>
   <joint name="rear_left_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="rear_left_wheel"/>
     <origin xyz="0.793 1.45 0.3" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
+    <limit effort="5000.0" velocity="22.0"/>
   </joint>
   <joint name="rear_right_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="rear_right_wheel"/>
     <origin xyz="-0.793 1.45 0.3" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
+    <limit effort="5000.0" velocity="22.0"/>
   </joint>
 
 
  
-
+<!--
   <gazebo>
     <plugin name="pruis_hybrid_drive" filename="libPriusHybridPlugin.so">
       <chassis>chassis</chassis>
@@ -293,7 +321,7 @@
       <flwheel_steering_d_gain>3e2</flwheel_steering_d_gain>
       <frwheel_steering_d_gain>3e2</frwheel_steering_d_gain>
     </plugin>
-  </gazebo>
+  </gazebo> -->
   
 
 
@@ -323,15 +351,21 @@
   </plugin>
 </gazebo>-->
 
-  <gazebo>
-    <plugin name="p3d" filename="libgazebo_ros_p3d.so">
-      <robotNamespace>/prius</robotNamespace>
-      <bodyName>base_link</bodyName>
-      <topicName>base_pose_ground_truth</topicName>
-      <frameName>map</frameName>
-      <updateRate>100.0</updateRate>
-    </plugin>
-  </gazebo>
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/prius</robotNamespace>
+  </plugin>
+</gazebo>
+
+<gazebo>
+  <plugin name="p3d" filename="libgazebo_ros_p3d.so">
+    <robotNamespace>/prius</robotNamespace>
+    <bodyName>base_link</bodyName>
+    <topicName>base_pose_ground_truth</topicName>
+    <frameName>map</frameName>
+    <updateRate>100.0</updateRate>
+  </plugin>
+</gazebo>
 
 
 </robot>
