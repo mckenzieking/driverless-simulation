@@ -22,6 +22,7 @@ MENU_XML = """
         <attribute name="action">win.change_label</attribute>
         <attribute name="target">Begin</attribute>
         <attribute name="label" translatable="yes">Begin</attribute>
+        
       </item>
     </section>
     <section>
