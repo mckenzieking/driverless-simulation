@@ -24,6 +24,17 @@ MENU_XML = """
         <attribute name="label" translatable="yes">Begin</attribute>
         
       </item>
+      <item>
+        <attribute name="action">win.change_label</attribute>
+        <attribute name="target">About us
+        We are the driverless car simulation team made up of 5 individuals, 
+        all who took on different areas of the project to see it's completion. It is made 
+        up of Jonathan Wells, Kenzie King, Carl Lane, Vivek Upadhyaya and Julian Ajja. 
+        Jonathan Wells, Vivek, Julian and Kenzie are all currently pursuing an undergraduate education in computer science. 
+        Carl is working towards his undergrad in information technology.
+</attribute>
+        <attribute name="label" translatable="yes">About us</attribute>
+      </item>
     </section>
     <section>
       <item>
