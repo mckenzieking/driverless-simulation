@@ -1,10 +1,9 @@
 import sys
-
+import subprocess
 import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gio, Gtk
-
 
 
 MENU_XML = """
@@ -15,15 +14,18 @@ MENU_XML = """
       <attribute name="label" translatable="yes">Overview</attribute>
       <item>
         <attribute name="action">win.change_label</attribute>
-        <attribute name="target">Instructions</attribute>
+        <attribute name="target">Moving around:
+   u    i    o
+   j    k    l
+   m    ,    .
+
+q/z : increase/decrease max speeds by 10%
+w/x : increase/decrease only linear speed by 10%
+e/c : increase/decrease only angular speed by 10%
+anything else : stop</attribute>
         <attribute name="label" translatable="yes">Instructions</attribute>
       </item>
-      <item>
-        <attribute name="action">win.change_label</attribute>
-        <attribute name="target">Begin</attribute>
-        <attribute name="label" translatable="yes">Begin</attribute>
-        
-      </item>
+
       <item>
         <attribute name="action">win.change_label</attribute>
         <attribute name="target">About us
@@ -51,7 +53,6 @@ MENU_XML = """
 </interface>
 """
 
-
 class AppWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -71,7 +72,7 @@ class AppWindow(Gtk.ApplicationWindow):
             ),
         )
 
-        lbl_variant = GLib.Variant.new_string("Instructions")
+        lbl_variant = GLib.Variant.new_string("WELCOME!")
         lbl_action = Gio.SimpleAction.new_stateful(
             "change_label", lbl_variant.get_type(), lbl_variant
         )
@@ -81,6 +82,20 @@ class AppWindow(Gtk.ApplicationWindow):
         self.label = Gtk.Label(label=lbl_variant.get_string(), margin=30)
         self.add(self.label)
         self.label.show()
+
+
+
+
+        action = Gio.SimpleAction.new("Begin", None)
+        action.connect("activate", self.on_begin)
+        self.add_action(action)
+
+    def on_begin(self, widget):
+        subprocess.run(['python3', '/home/cl2/Documents/GitHub/driverless-simulation/UI/Demo.py'])
+
+
+
+
 
     def on_change_label_state(self, action, value):
         action.set_state(value)
@@ -92,6 +107,7 @@ class AppWindow(Gtk.ApplicationWindow):
             self.maximize()
         else:
             self.unmaximize()
+
 
 
 class Application(Gtk.Application):
@@ -118,6 +134,10 @@ class Application(Gtk.Application):
 
         action = Gio.SimpleAction.new("quit", None)
         action.connect("activate", self.on_quit)
+        self.add_action(action)
+
+        action = Gio.SimpleAction.new("Begin", None)
+        action.connect("activate", self.on_begin)
         self.add_action(action)
 
         builder = Gtk.Builder.new_from_string(MENU_XML, -1)
@@ -149,7 +169,8 @@ class Application(Gtk.Application):
     def on_quit(self, action, param):
         self.quit()
 
-
+    def on_begin(self, value):
+        subprocess.run(['python3', '/home/cl2/Documents/GitHub/driverless-simulation/UI/Demo.py'])
 if __name__ == "__main__":
     app = Application()
     app.run(sys.argv)
